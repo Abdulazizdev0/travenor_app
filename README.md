@@ -1,5 +1,3 @@
-# travenor_app
-
 # Travenor Travel Agency 
 
 This project is a rest_framework project for the professional travel and tourism agency system **Travenor**. 
@@ -26,4 +24,3 @@ travenor/database/travenor_db.png
 ---
 
 ## 📂 Folder structure
-
