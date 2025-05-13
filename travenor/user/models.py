@@ -22,7 +22,6 @@ class User(AbstractBaseUser, PermissionsMixin):
     firstname = models.CharField(max_length=100)
     lastname = models.CharField(max_length=100)
     image = models.ImageField(upload_to='user_images/')
-    history = models.TextField(null=True, blank=True)
     location = models.CharField(max_length=255,null=False,blank=False)
     birth_date = models.DateField(null=True, blank=True)
     joined_at = models.DateField(auto_now_add=True)

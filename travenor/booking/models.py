@@ -28,7 +28,7 @@ class Payment(models.Model):
     ]
     booking = models.ForeignKey(Booking, on_delete=models.CASCADE)
     amount = models.DecimalField(max_digits=10, decimal_places=2)
-    date = models.DateTimeField()
+    date = models.DateTimeField(auto_now_add=True)
     type = models.CharField(max_length=50)
 
     def __str__(self):

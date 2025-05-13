@@ -2,6 +2,7 @@ from django.db import models
 from core.models import Category
 from user.models import User
 from staff.models import Employee
+from core.models import Region
 
 class Travels(models.Model):
     level_type = [
@@ -12,6 +13,10 @@ class Travels(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
     level = models.CharField(max_length=50,choices=level_type,default='orta')
+    region = models.ForeignKey(Region, on_delete=models.CASCADE,null=True,blank=True)
+    birth_date = models.DateField(null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    guests_count = models.IntegerField(default=1)
     start_date = models.DateField()
     end_date = models.DateField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
@@ -19,6 +24,9 @@ class Travels(models.Model):
 
     def __str__(self):
         return f"Travel from {self.start_date} to {self.end_date}"
+
+
+
 
 class TravelImage(models.Model):
     travel = models.ForeignKey(Travels, on_delete=models.CASCADE)
@@ -28,12 +36,18 @@ class TravelImage(models.Model):
     def __str__(self):
         return f"Image for {self.travel}"
 
+
+
+
 class TravelCategory(models.Model):
     travel = models.ForeignKey(Travels, on_delete=models.CASCADE)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.travel} - {self.category}"
+
+
+
 
 class Review(models.Model):
     travel = models.ForeignKey(Travels, on_delete=models.CASCADE)
@@ -44,6 +58,9 @@ class Review(models.Model):
 
     def __str__(self):
         return f"Review by {self.user} for {self.travel}"
+
+
+
 
 class TravelGuide(models.Model):
     employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
